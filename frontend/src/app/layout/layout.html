@@ -1,0 +1,38 @@
+<c-sidebar
+  #sidebar1="cSidebar"
+  class="d-print-none sidebar sidebar-fixed"
+  colorScheme="dark"
+  id="sidebar1"
+  visible
+>
+  <c-sidebar-header class="px-4 py-4">
+    <c-sidebar-brand [routerLink]="[]" class="d-flex flex-row align-items-center">
+      <img src="assets/images/brand.svg" height="67" alt="">
+    </c-sidebar-brand>
+  </c-sidebar-header>
+
+  <ng-scrollbar pointerEventsMethod="scrollbar" visibility="hover">
+    <c-sidebar-nav [navItems]="navItems" dropdownMode="close" compact />
+  </ng-scrollbar>
+
+</c-sidebar>
+
+<div class="wrapper d-flex flex-column min-vh-100">
+
+  <!--app-header-->
+  <app-header
+    [cShadowOnScroll]="'none'"
+    class="mb-4 d-print-none header header-sticky p-0 shadow-sm"
+    sidebarId="sidebar1"
+  />
+
+  <!--app-body-->
+
+  <div class="body flex-grow-1">
+    <c-container breakpoint="xxl" class="h-auto px-4">
+      <router-outlet />
+    </c-container>
+    <!-- app footer -->
+    <app-footer />
+  </div>
+</div>

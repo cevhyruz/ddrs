@@ -1,0 +1,100 @@
+<!--<c-header class="mb-4 d-print-none" position="sticky">-->
+<ng-container>
+  <c-container [fluid]="true" class="px-4">
+    <button
+      [cSidebarToggle]="sidebarId()"
+      cHeaderToggler
+      class="btn"
+      toggle="visible"
+      style="margin-inline-start: -14px;"
+      aria-label="Toggle sidebar navigation"
+    >
+      <svg cIcon name="cilMenu" size="xl" class="mt-1"></svg>
+    </button>
+
+    <c-header-text class="ms-2 me-auto">
+      <!-- <c-breadcrumb-router/> -->
+    </c-header-text>
+
+    <!-- <c-header-nav class="d-none d-md-flex ms-auto"> -->
+    <!--   <c-nav-item> -->
+    <!--     <a cNavLink routerLink="/dashboard" routerLinkActive="active">Dashboard</a> -->
+    <!--   </c-nav-item> -->
+    <!--   <c-nav-item> -->
+    <!--     <a cNavLink routerLink="/users" routerLinkActive="active">Users</a> -->
+    <!--   </c-nav-item> -->
+    <!--   <c-nav-item> -->
+    <!--     <a cNavLink routerLink="/settings" routerLinkActive="active">Settings</a> -->
+    <!--   </c-nav-item> -->
+    <!-- </c-header-nav> -->
+
+    <!-- divider -->
+    <!-- <c-header-nav> -->
+    <!--   <div class="nav-item py-1"> -->
+    <!--     <div class="vr h-100 mx-2 text-body text-opacity-75"></div> -->
+    <!--   </div> -->
+    <!-- </c-header-nav> -->
+
+    <button class="btn btn-primary me-2 ms-2">
+      Scan QR Code
+    </button>
+
+    <!-- divider -->
+    <c-header-nav>
+      <div class="nav-item py-1">
+        <div class="vr h-100 mx-2 text-body text-opacity-75"></div>
+      </div>
+    </c-header-nav>
+
+    <!-- <c-header-nav class="d-none d-md-flex ms-auto "> -->
+    <!--   <a cNavLink> -->
+    <!--     <svg cIcon class="my-1" name="cilBell" size="lg"></svg> -->
+    <!--   </a> -->
+    <!--   <a cNavLink> -->
+    <!--     <svg cIcon class="my-1" name="cilList" size="lg"></svg> -->
+    <!--   </a> -->
+    <!--   <a cNavLink> -->
+    <!--     <svg cIcon class="my-1" name="cilEnvelopeOpen" size="lg"></svg> -->
+    <!--   </a> -->
+    <!-- </c-header-nav> -->
+
+    <c-header-nav class="mx-0">
+      <ng-container *ngTemplateOutlet="userDropdown" />
+    </c-header-nav>
+  </c-container>
+</ng-container>
+<!--</c-header>-->
+
+<ng-template #userDropdown>
+  <c-dropdown [popperOptions]="{ placement: 'bottom-start' }" variant="nav-item">
+    <button [caret]="true" cDropdownToggle class="py-0 pe-0" aria-label="Open user menu">
+
+     <c-avatar
+       size="md"
+       color="secondary"
+       textColor="white">
+         CUI
+     </c-avatar>
+
+    </button>
+    <ul cDropdownMenu class="pt-0 w-auto">
+      <li>
+        <h6 cDropdownHeader class="bg-body-secondary text-body-secondary fw-semibold py-2">
+          Account
+        </h6>
+      </li>
+      <li class="mt-2">
+        <a cDropdownItem routerLink="">
+          <svg cIcon class="me-2" name="cilUser"></svg>
+          Profile
+        </a>
+      </li>
+      <li>
+        <a cDropdownItem routerLink="">
+          <svg cIcon class="me-2 text-danger" name="cilAccountLogout"></svg>
+          Logout
+        </a>
+      </li>
+    </ul>
+  </c-dropdown>
+</ng-template>
