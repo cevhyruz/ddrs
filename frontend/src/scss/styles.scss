@@ -3,7 +3,7 @@
 // Import styles with default layout.
 @use "@coreui/coreui/scss/coreui" as * with (
   $enable-deprecation-messages: false,
-  $font-size-base: 0.875rem, // 14px
+  /* $font-size-base: 0.875rem, // 14px */
 
   $sidebar-bg: #f3f4f7,
   $sidebar-color: #e2e8f0,
@@ -18,7 +18,7 @@
   $sidebar-nav-link-hover-bg: #eaeaec,
   $sidebar-nav-link-hover-icon-color: #000,
 
-  $sidebar-nav-title-color: #111114,
+  $sidebar-nav-title-color: #475569,
 
   $sidebar-nav-link-active-color: #111114,
   $sidebar-nav-link-active-icon-color: #111114,

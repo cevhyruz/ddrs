@@ -1,1 +1,57 @@
-<p>dashboard works!</p>
+<c-container>
+  <h1 class="mb-3">Dashboard</h1>
+  <c-row [gutter]="4">
+    <c-col xs="12" md="4">
+      <c-card class="bg-light" style="border-color: #97BBCD;">
+        <c-card-body>
+          <h2 class="fw-bold">0</h2>
+          <span class="fs-6">Total Dog Owners</span>
+        </c-card-body>
+      </c-card>
+    </c-col>
+
+    <c-col xs="12" md="4">
+      <c-card class="bg-light" style="border-color: #97BBCD;">
+        <c-card-body>
+          <h2 class="fw-bold">0</h2>
+          <span class="fs-6">Total Dogs</span>
+        </c-card-body>
+      </c-card>
+    </c-col>
+
+    <c-col xs="12" md="4">
+      <c-card class="bg-light" style="border-color: #97BBCD;">
+        <c-card-body>
+          <h2 class="fw-bold">0</h2>
+          <span class="fs-6">Total Vaccinated</span>
+        </c-card-body>
+      </c-card>
+    </c-col>
+
+  </c-row>
+
+  <c-row class="mt-4 mb-5">
+
+    <c-col xs="12" md="8">
+      <c-card class="bg-light">
+        <c-card-body>
+          <h5 class="mb-4 fw-bold">Registration Trends</h5>
+            <c-chart [data]="data" type="line" (chartRef)="handleChartRef($event)" />
+        </c-card-body>
+      </c-card>
+    </c-col>
+
+    <c-col xs="12" md="4">
+      <c-card class="bg-light">
+        <c-card-body>
+          <h5 class="mb-4 fw-bold">Vaccination Status Distribution</h5>
+           <c-chart [data]="dataPie" type="pie" />
+        </c-card-body>
+      </c-card>
+    </c-col>
+
+
+
+  </c-row>
+
+</c-container>

@@ -1,1 +1,273 @@
-<p>users works!</p>
+<h1 class="mb-3">Users</h1>
+<!-- Delete User Modal -->
+<c-modal #deleteUserModal
+         backdrop="static"
+         id="deleteUserModal"
+>
+  <c-modal-header>
+    <h5 cModalTitle class="text-danger">
+      <svg cIcon name="cilTrash" class="me-2" size="lg"></svg>
+      Delete User
+    </h5>
+    <button [cModalToggle]="deleteUserModal.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    Warning! This will delete the user permanently.
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="deleteUserModal.id" cButton color="secondary"
+    class="text-white"
+    >
+
+      Close
+    </button>
+    <button cButton color="danger"
+      (click)="deleteUser(selectedUser()?.id)"
+      [disabled]="isDeletingUser()"
+    >
+      @if (isDeletingUser()) {
+        <c-spinner color="light" size="sm" class="me-2"/>
+      }
+    Delete User
+    </button>
+  </c-modal-footer>
+</c-modal>
+
+<!-- Edit User Model -->
+<c-modal #editUserModal backdrop="static" id="editUserModal">
+<form [formGroup]="editForm">
+  <c-modal-header>
+    <h5 cModalTitle>
+      <svg cIcon name="cilPen" class="me-2" size="lg"></svg>
+      Update User Details
+    </h5>
+    <button [cModalToggle]="editUserModal.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+
+  <!-- Firstname -->
+  <div class="mb-3">
+  <c-input-group>
+    <span cInputGroupText id="inputGroup-sizing-default">
+    First Name
+    </span>
+    <input
+        formControlName="firstname"
+        cFormControl>
+  </c-input-group>
+  <div *ngIf="editForm.get('firstname')?.touched && editForm.get('firstname')?.invalid">
+    <small class="text-danger">First name is required</small>
+  </div>
+  </div>
+
+  <!-- Middlename -->
+  <div class="mb-3">
+  <c-input-group>
+    <span cInputGroupText id="inputGroup-sizing-default">
+    Middle Name
+    </span>
+    <input
+        formControlName="middlename"
+        cFormControl />
+  </c-input-group>
+  <div *ngIf="editForm.get('middlename')?.touched && editForm.get('middlename')?.invalid">
+    <small class="text-danger">Middle name is required</small>
+  </div>
+  </div>
+
+  <!-- Lastname -->
+  <div class="mb-3">
+  <c-input-group>
+    <span cInputGroupText id="inputGroup-sizing-default">
+    Last Name
+    </span>
+    <input
+        formControlName="lastname"
+        cFormControl />
+  </c-input-group>
+  <div *ngIf="editForm.get('lastname')?.touched && editForm.get('lastname')?.invalid">
+    <small class="text-danger">Last name is required</small>
+  </div>
+  </div>
+
+  <!-- Role -->
+  <select
+    formControlName="role"
+    cSelect>
+    <option value="Admin">Admin</option>
+    <option value="Barangay Staff">Barangay Staff</option>
+  </select>
+
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="editUserModal.id" cButton color="secondary">
+      Close
+    </button>
+    <button cButton color="primary"
+    (click)="updateUser(selectedUser())"
+    [disabled]="editForm.invalid || isUpdatingUser()"
+    >
+    @if (isUpdatingUser()) {
+      <c-spinner color="light" size="sm" class="me-2"/>
+    }
+    Update User
+    </button>
+  </c-modal-footer>
+  </form>
+</c-modal>
+
+<!-- Create new user -->
+<c-modal #newUserModal backdrop="static" id="newUserModal">
+<form [formGroup]="userForm">
+  <c-modal-header>
+    <h5 cModalTitle>
+      <svg cIcon name="cilUser" class="me-2" size="lg"></svg>
+      Create New User
+    </h5>
+    <button [cModalToggle]="newUserModal.id" cButtonClose
+    (click)="resetCreateUserForm()"
+    ></button>
+  </c-modal-header>
+  <c-modal-body>
+
+  <!-- Firstname -->
+  <div class="mb-3">
+  <c-input-group>
+    <span cInputGroupText id="inputGroup-sizing-default">
+    First Name
+    </span>
+    <input aria-describedby="inputGroup-sizing-default"
+           formControlName="firstname"
+           aria-label="Sizing example input"
+           cFormControl
+    />
+  </c-input-group>
+    <div *ngIf="userForm.get('firstname')?.touched && userForm.get('firstname')?.invalid">
+      <small class="text-danger">First name is required</small>
+    </div>
+  </div>
+
+  <!-- Middlename -->
+  <div class="mb-3">
+  <c-input-group>
+    <span cInputGroupText id="inputGroup-sizing-default">
+    Middle Name
+    </span>
+    <input aria-describedby="inputGroup-sizing-default"
+           formControlName="middlename"
+           aria-label="Sizing example input"
+           cFormControl
+    />
+  </c-input-group>
+  <div *ngIf="userForm.get('middlename')?.touched && userForm.get('middlename')?.invalid">
+    <small class="text-danger">Middle name is required</small>
+  </div>
+  </div>
+
+  <!-- Lastname -->
+  <div class="mb-3">
+  <c-input-group>
+    <span cInputGroupText id="inputGroup-sizing-default">
+    Last Name
+    </span>
+    <input aria-describedby="inputGroup-sizing-default"
+           formControlName="lastname"
+           aria-label="Sizing example input"
+           cFormControl
+    />
+  </c-input-group>
+    <div *ngIf="userForm.get('lastname')?.touched && userForm.get('lastname')?.invalid">
+      <small class="text-danger">Last name is required</small>
+    </div>
+  </div>
+
+  <!-- Role -->
+  <select cSelect formControlName="role">
+    <option value="Barangay Staff">Barangay Staff</option>
+    <option value="Admin">Admin</option>
+  </select>
+
+
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="newUserModal.id" cButton color="secondary"
+    (click)="resetCreateUserForm()"
+    >
+      Close
+    </button>
+    <button cButton color="primary" [disabled]="userForm.invalid || isCreatingUser()"
+      (click)="createUser()"
+    >
+      @if (isCreatingUser()) {
+        <c-spinner color="light" size="sm" class="me-2"/>
+      }
+      Create User
+    </button>
+  </c-modal-footer>
+  </form>
+</c-modal>
+
+<c-card class="mb-5">
+<c-card-header class="d-flex justify-content-between align-items-center">
+  <span class="fs-5 fw-bold">Accounts</span>
+   <button [cModalToggle]="newUserModal.id"
+     cButton size="lg" variant="outline">Add User</button>
+</c-card-header>
+<c-card-body>
+<div class="table-responsive-custom">
+  <table class="table table-hover align-middle">
+    <thead>
+      <tr>
+        <th>UserID</th>
+        <th>Name</th>
+        <th>Role</th>
+        <th class="text-end">Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      @for (user of users; track user.id;) {
+        <tr>
+          <td>{{ user.id | slice:-6 }}</td>
+          <td>
+          <c-avatar size="md" class="me-2" [color]='user.role === "Admin" ? "secondary" : "primary" ' textColor="white">
+          {{ user.firstname[0] }}{{ user.lastname[0] }}
+          </c-avatar>
+          {{ user.firstname }} {{ user.middlename[0] }}. {{ user.lastname }}</td>
+          <td>{{ user.role }}</td>
+          <td class="text-end">
+            <ng-container *ngTemplateOutlet="userAction; context: { $implicit: user }" />
+          </td>
+        </tr>
+      }
+
+
+    </tbody>
+  </table>
+</div>
+
+  <ng-template #userAction let-user>
+    <c-dropdown alignment="end" variant="btn-group">
+      <button [caret]="false" cButton cDropdownToggle color="transparent" aria-label="Open dropdown">
+        <svg cIcon name="cilOptions" size="xl"></svg>
+      </button>
+      <ul cDropdownMenu>
+
+        <li><a [cModalToggle]="editUserModal.id" [routerLink]="[]" cDropdownItem
+          (click)="editUser(user)">
+        <svg cIcon name="cilPen" class="me-2" size="md"></svg>
+        Edit user details</a></li>
+        <li><a [cModalToggle]="deleteUserModal.id" [routerLink]="[]" cDropdownItem
+          (click)="selectedUser.set(user)"
+        >
+        <svg cIcon name="cilTrash" class="me-2 text-danger" size="md"></svg>
+        Delete user
+        </a></li>
+      </ul>
+    </c-dropdown>
+  </ng-template>
+
+</c-card-body>
+<c-card>
+

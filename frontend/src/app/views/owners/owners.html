@@ -1,0 +1,172 @@
+<c-modal #viewRegistrationModal
+         id="viewRegistrationModal"
+         [scrollable]="true"
+         size="lg"
+         >
+  <c-modal-header>
+    <h5 cModalTitle>Owner Registration Record</h5>
+    <button [cModalToggle]="viewRegistrationModal.id" cButtonClose></button>
+  </c-modal-header>
+
+  <c-modal-body>
+    <c-card class="border-0">
+      <c-card-body class="bg-light d-flex align-items-center justify-content-between">
+
+
+        <div>
+          <h3 class="fw-bold">
+          {{ selectedOwner()?.firstname }}
+          {{ selectedOwner()?.middlename[0] }}.
+          {{ selectedOwner()?.lastname }}
+          </h3>
+
+          <div>
+          {{ selectedOwner()?.houseno }},
+          {{ selectedOwner()?.street}},
+          Barangay 1, Em's Barrio, Legazpi City
+          </div>
+
+          <div>
+          {{ selectedOwner()?.email }} /
+          {{ selectedOwner()?.mobileno}}
+          </div>
+        </div>
+
+        <div>
+          <img src="assets/images/QR_Code_Example.png"
+               height="120"
+          />
+        </div>
+
+
+
+      </c-card-body>
+
+      <div class="d-flex align-items-center justify-content-between mt-5">
+        <h4 class="m-3">{{ selectedOwner()?.firstname }}'s Dog/s</h4>
+        <button size="lg" cButton variant="outline">Add Dog</button>
+      </div>
+
+        <c-container>
+          <c-row class="gap-3">
+        @for (dog of selectedOwner()?.dogs; track $index;) {
+                  <c-col xxl="6">
+              <c-card style="border: 2px solid #EFEFEF;">
+                <c-card-body>
+                  <div class="ms-3 d-flex align-items-center justify-content-between">
+                    <div>
+                  <h2 class="fw-bold">{{ dog.name }}</h2>
+                  <p class="d-flex flex-column">
+                    <span>{{ dog.breed }}</span>
+                    <span>{{ dog.age }}</span>
+                  </p>
+                  </div>
+                  <img src="assets/images/dog-avatar.avif"
+                       alt=""
+                       height="220px"
+                  />
+                  </div>
+                  <div class="d-flex gap-3">
+                    <button size="lg" cButton variant="outline">Profile</button>
+                    <button size="lg" cButton>Vaccination History</button>
+                  </div>
+                </c-card-body>
+              </c-card>
+                  </c-col>
+        }
+          </c-row>
+        </c-container>
+
+    </c-card>
+  </c-modal-body>
+
+
+
+  <c-modal-footer>
+    <button [cModalToggle]="viewRegistrationModal.id" cButton color="secondary">
+      Close
+    </button>
+    <button cButton color="primary">Print</button>
+  </c-modal-footer>
+</c-modal>
+
+<h1 class="mb-4">Dog Owners</h1>
+<c-card class="mb-5">
+  <c-card-header class="d-flex justify-content-between align-items-center">
+    <span class="fs-5 fw-bold">Dog owners details</span>
+     <button
+     cButton size="lg" variant="outline">Register Owner</button>
+  </c-card-header>
+<c-card-body>
+<div class="table-responsive-custom">
+  <table class="table table-hover align-middle">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>House No.</th>
+        <th>Mobile No.</th>
+        <th>Email</th>
+        <th>Dog/s</th>
+        <th class="text-center">Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      @for (owner of owners; track owner.id;) {
+        <tr>
+          <td>{{ owner.id }}</td>
+          <td>{{ owner.firstname }} {{ owner.middlename[0] }}. {{  owner.lastname }}</td>
+          <td>{{ owner.houseno }}, {{ owner.street }}</td>
+          <td>{{ owner.mobileno }}</td>
+          <td>{{ owner.email }}</td>
+          <td>{{ owner.noofdogs }}</td>
+          <td class="text-end d-flex gap-2">
+            <button [cModalToggle]="viewRegistrationModal.id"
+                    cButton color="primary"
+                    class="text-white px-3"
+                    (click)="ViewSelectedOwner(owner)"
+                    size="sm">
+              View
+            </button>
+            <button cButton color="danger"  class="text-white" size="sm">Delete</button>
+          </td>
+        </tr>
+      }
+
+    </tbody>
+  </table>
+</div>
+
+  <ng-template #ownerAction let-ownerAction>
+    <c-dropdown alignment="end" variant="btn-group">
+      <button [caret]="false" cButton cDropdownToggle color="transparent" aria-label="Open dropdown">
+        <svg cIcon name="cilOptions" size="xl"></svg>
+      </button>
+      <ul cDropdownMenu>
+
+
+        <li><a [routerLink]="[]" cDropdownItem
+            >
+        <svg cIcon name="cilAnimal" class="me-2" size="md"></svg>
+         View details </a></li>
+
+        <li><a [routerLink]="[]" cDropdownItem>
+        <svg cIcon name="cilPen" class="me-2" size="md"></svg>
+        Edit owner details</a></li>
+
+        <li><a [routerLink]="[]" cDropdownItem >
+        <svg cIcon name="cilTrash" class="me-2 text-danger" size="md"></svg>
+        delete Registration
+        </a></li>
+
+      </ul>
+    </c-dropdown>
+  </ng-template>
+
+
+</c-card-body>
+</c-card>
+
+

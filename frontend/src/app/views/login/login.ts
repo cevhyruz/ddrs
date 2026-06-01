@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IconDirective } from '@coreui/icons-angular';
 import { HttpClient, HttpRequest } from '@angular/common/http';
@@ -32,6 +32,26 @@ export class Login {
 
   readonly loginProgress = signal(false);
 
+  readonly mockCurrentUser = signal<{
+    username: string;
+    role: string;
+    name: string;
+  } | null>(null);
+
+  // signal
+  readonly mockIsAdmin = computed(() => {
+    return this.mockCurrentUser()?.role === 'admin';
+  });
+
+  readonly mockUsers = [
+    {
+      username: 'admin',
+      password: 'admin123',
+      role: 'admin',
+      name: 'System Administrator'
+    },
+  ];
+
   // login function should just:
   // [/] send credentials
   // [/] show login progress
@@ -49,6 +69,19 @@ export class Login {
         console.log(err, '');
       }
     })
+  }
+
+  mockLogin(username: string, password: string) {
+    const isAdmin = this.mockUsers.find( user =>
+      user.username === username &&
+      user.password === password
+    );
+    // setup current mock user
+    if(isAdmin) {
+      this.mockCurrentUser()?.role === 'admin';
+    } {
+
+    }
   }
 
 }

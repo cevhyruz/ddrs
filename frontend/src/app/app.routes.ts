@@ -1,9 +1,14 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
+  // {
+  //   path: '',
+  //   redirectTo: 'dashboard',
+  //   pathMatch: 'full'
+  // },
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -16,6 +21,14 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         loadChildren: () => import('./views/dashboard/routes').then(m => m.routes)
+      },
+      {
+        path: 'users',
+        loadChildren: () => import('./views/users/routes').then(m => m.routes)
+      },
+      {
+        path: 'owners',
+        loadChildren: () => import('./views/owners/routes').then(m => m.routes)
       },
       {
         path: '404',

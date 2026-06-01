@@ -3,7 +3,7 @@ import { INavData } from '@coreui/angular';
 export const navItems: INavData[] = [
   {
     title: true,
-    name: 'Main'
+    name: 'Main (admin)'
   },
   {
     name: 'Dashboard',
@@ -11,7 +11,7 @@ export const navItems: INavData[] = [
     iconComponent: { name: 'cil-speedometer' },
   },
   {
-    name: 'Users',
+    name: 'User Management',
     url: '/users',
     iconComponent: { name: 'cil-user' },
   },
@@ -20,13 +20,13 @@ export const navItems: INavData[] = [
     name: 'Registration'
   },
   {
-    name: 'Dog Registry',
-    url: '/dog-registry',
+    name: 'Dog Owners',
+    url: '/owners',
     iconComponent: { name: 'cil-speedometer' },
   },
   {
-    name: 'Dog Owners',
-    url: '/owners',
+    name: 'Dog Registration',
+    url: '/dog-registry',
     iconComponent: { name: 'cil-speedometer' },
   },
   {
@@ -34,13 +34,21 @@ export const navItems: INavData[] = [
     url: '/qr-code-scanner',
     iconComponent: { name: 'cil-speedometer' },
   },
+  { title: true, name: 'Vaccination' },
   {
-    title: true,
-    name: 'Vaccination'
+    name: 'Vaccination',
+    url: '/vaccinations',
+    iconComponent: { name: 'cil-speedometer' },
+  },
+  { title: true, name: 'Reports & Certificates' },
+  {
+    name: 'Reports',
+    url: '/reports',
+    iconComponent: { name: 'cil-speedometer' },
   },
   {
-    name: 'Vaccinations',
-    url: '/vaccinations',
+    name: 'Certificates',
+    url: '/reports',
     iconComponent: { name: 'cil-speedometer' },
   },
   // {
