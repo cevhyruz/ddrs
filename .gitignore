@@ -1,0 +1,4 @@
+config/*
+!default.example.json
+.vercel
+.env*

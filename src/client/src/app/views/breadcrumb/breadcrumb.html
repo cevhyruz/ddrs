@@ -1,0 +1,25 @@
+@if (breadcrumbs.length > 0) {
+    @for (breadcrumb of breadcrumbs; track $index; let last = $last) {
+    @if (!last) {
+      <a [routerLink]="breadcrumb.url"
+        class="mx-1 fw-medium text-secondary-emphasis text-decoration-none"
+        >
+        {{ breadcrumb.label }}
+      </a>
+      <span class="mx-2 text-secondary opacity-25">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="20" fill="none" stroke="currentColor" stroke-width="2" class="bi bi-chevron-right" viewBox="0 0 16 16">
+          <path fill="currentColor" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
+        </svg>
+      </span>
+      <!-- <span class="mx-3 fs-6 fw-bold">/</span> -->
+    }
+
+    @if (last) {
+      <a [routerLink]="breadcrumb.url"
+        class="mx-1 fw-medium text-decoration-none text-secondary"
+        >
+        {{ breadcrumb.label }}
+      </a>
+    }
+  }
+}

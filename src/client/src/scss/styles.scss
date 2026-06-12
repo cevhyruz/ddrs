@@ -1,0 +1,57 @@
+/* You can add global styles to this file, and also import other style files */
+
+@use 'leaflet/dist/leaflet.css';
+
+// Import styles with default layout.
+@use "@coreui/coreui/scss/coreui" as * with (
+  $enable-deprecation-messages: false,
+  /* $font-size-base: 0.875rem, // 14px */
+
+  $sidebar-bg: #f3f4f7,
+  $sidebar-color: #e2e8f0,
+
+  $sidebar-width: 20rem,
+
+  $sidebar-padding-x: 3rem,
+
+  $sidebar-nav-link-color: #111114,
+
+  $sidebar-nav-link-hover-color: #000,
+  $sidebar-nav-link-hover-bg: #eaeaec,
+  $sidebar-nav-link-hover-icon-color: #000,
+
+  $sidebar-nav-title-color: #475569,
+
+  $sidebar-nav-link-active-color: #111114,
+  $sidebar-nav-link-active-icon-color: #111114,
+  $sidebar-nav-link-active-bg: #eaeaec,
+
+  /* $sidebar-nav-group-toggle-show-color: red, */
+  $sidebar-nav-group-indicator-color: #000,
+
+  $sidebar-nav-link-icon-color: #475569,
+
+  // card component
+
+  $card-border-color: #EFEFEF,
+
+
+  // Footer
+
+  $footer-bg: white,
+  $footer-border-color: #efefef,
+
+
+);
+
+// Import Chart.js custom tooltips styles
+@use "@coreui/chartjs/scss/coreui-chartjs";
+
+// Custom styles for this theme
+@use "theme";
+
+// Some temp fixes
+//@use "fixes";
+
+// If you want to add custom CSS you can put it here.
+@use "custom";

@@ -1,0 +1,68 @@
+<!--<c-header class="mb-4 d-print-none" position="sticky">-->
+<ng-container>
+  <c-container [fluid]="true" class="px-4">
+    <button
+      [cSidebarToggle]="sidebarId()"
+      cHeaderToggler
+      class="btn"
+      toggle="visible"
+      style="margin-inline-start: -14px;"
+      aria-label="Toggle sidebar navigation"
+    >
+      <svg cIcon name="cilMenu" size="xl" class="mt-1"></svg>
+    </button>
+
+    <c-header-text class="ms-2 me-auto">
+      <!-- <c-breadcrumb-router/> -->
+      <app-breadcrumb />
+    </c-header-text>
+
+    <!-- <c-header-nav class="d-none d-md-flex ms-auto"> -->
+    <!--   <c-nav-item> -->
+    <!--     <a cNavLink routerLink="/dashboard" routerLinkActive="active">Dashboard</a> -->
+    <!--   </c-nav-item> -->
+    <!--   <c-nav-item> -->
+    <!--     <a cNavLink routerLink="/users" routerLinkActive="active">Users</a> -->
+    <!--   </c-nav-item> -->
+    <!--   <c-nav-item> -->
+    <!--     <a cNavLink routerLink="/settings" routerLinkActive="active">Settings</a> -->
+    <!--   </c-nav-item> -->
+    <!-- </c-header-nav> -->
+
+    <!-- divider -->
+    <!-- <c-header-nav> -->
+    <!--   <div class="nav-item py-1"> -->
+    <!--     <div class="vr h-100 mx-2 text-body text-opacity-75"></div> -->
+    <!--   </div> -->
+    <!-- </c-header-nav> -->
+
+    <button class="btn btn-primary me-2 ms-2">
+      Register A Pet
+    </button>
+
+    <!-- divider -->
+    <c-header-nav>
+      <div class="nav-item py-1">
+        <div class="vr h-100 mx-2 text-body text-opacity-75"></div>
+      </div>
+    </c-header-nav>
+
+    <!-- <c-header-nav class="d-none d-md-flex ms-auto "> -->
+    <!--   <a cNavLink> -->
+    <!--     <svg cIcon class="my-1" name="cilBell" size="lg"></svg> -->
+    <!--   </a> -->
+    <!--   <a cNavLink> -->
+    <!--     <svg cIcon class="my-1" name="cilList" size="lg"></svg> -->
+    <!--   </a> -->
+    <!--   <a cNavLink> -->
+    <!--     <svg cIcon class="my-1" name="cilEnvelopeOpen" size="lg"></svg> -->
+    <!--   </a> -->
+    <!-- </c-header-nav> -->
+
+    <c-header-nav class="mx-0">
+      <!-- <ng-container *ngTemplateOutlet="userDropdown" /> -->
+      <app-user-dropdown />
+    </c-header-nav>
+  </c-container>
+</ng-container>
+<!--</c-header>-->

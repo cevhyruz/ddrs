@@ -1,0 +1,82 @@
+<c-container fluid class="px-0">
+
+  <c-row>
+    <c-col xs="12" md="9">
+      <c-card class="bg-light" style="border-color: #97BBCD;">
+        <c-card-header class="d-flex justify-content-between align-items-center">
+          <h5 class="fw-bold mb-0">Dog Owners Distribution Map</h5>
+          <button cButton class="">
+            View Map
+          </button>
+        </c-card-header>
+        <c-card-body class="p-0">
+          <app-map />
+        </c-card-body>
+      </c-card>
+    </c-col>
+
+    <c-col class="d-flex flex-column gap-4">
+      <c-card class="bg-light" style="border-color: #97BBCD;">
+        <c-card-body>
+          <h2 class="fw-bold">0</h2>
+          <span class="fs-5 fw-bold">Total Pets</span>
+        </c-card-body>
+      </c-card>
+
+      <c-card class="bg-light" style="border-color: #97BBCD;">
+        <c-card-body>
+          <h2 class="fw-bold">0</h2>
+          <span class="fs-5 fw-bold">Total Pet Owners</span>
+        </c-card-body>
+      </c-card>
+
+      <c-card class="bg-light" style="border-color: #97BBCD;">
+        <c-card-body>
+          <h2 class="fw-bold">0</h2>
+          <span class="fs-5 fw-bold">Total Vaccinated</span>
+        </c-card-body>
+      </c-card>
+    </c-col>
+
+  </c-row>
+
+
+  <c-row class="mt-4 mb-5">
+
+    <c-col xs="12" md="4">
+      <c-card class="bg-light">
+        <c-card-body>
+          <h5 class="mb-4 fw-bold">Vaccination Status Distribution</h5>
+           <c-chart [data]="dataPie" type="pie" />
+        </c-card-body>
+      </c-card>
+    </c-col>
+
+    <c-col xs="12" md="8">
+      <c-card class="bg-light">
+        <c-card-body>
+          <h5 class="mb-4 fw-bold">Registration Trends</h5>
+            <c-chart [data]="data" type="line" (chartRef)="handleChartRef($event)" />
+        </c-card-body>
+      </c-card>
+    </c-col>
+
+
+
+  </c-row>
+
+  <!-- <c-row class="mt-4"> -->
+  <!--   <c-col> -->
+  <!--     <c-card class="bg-light" style="border-color: #97BBCD;"> -->
+  <!--       <c-card-header class="d-flex justify-content-between align-items-center"> -->
+  <!--         <h5 class="fw-bold mb-0">Reported Incidents</h5> -->
+  <!--       </c-card-header> -->
+  <!--       <c-card-body class="p-0"> -->
+  <!--         <c-chart [data]="dataBar" type="bar" /> -->
+  <!--       </c-card-body> -->
+  <!--     </c-card> -->
+  <!--   </c-col> -->
+  <!-- </c-row> -->
+
+
+</c-container>
